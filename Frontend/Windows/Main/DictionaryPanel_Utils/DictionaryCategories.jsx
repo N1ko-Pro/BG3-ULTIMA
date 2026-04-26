@@ -12,7 +12,7 @@ import { useLocale } from '../../../Locales';
 export function CategorySidebar({ active, onSelect }) {
   const t = useLocale();
   return (
-    <div className="shrink-0 w-[48px] flex flex-col items-center gap-1.5 py-10 border-r border-white/[0.06] bg-surface-0/40">
+    <div className="shrink-0 w-[48px] h-full flex flex-col items-center gap-1.5 py-10 border-r border-white/[0.06] bg-surface-0/40">
       {CATEGORIES.map((cat) => {
         const Icon = cat.icon;
         const isActive = active === cat.id;

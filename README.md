@@ -69,7 +69,29 @@ npm run dist
 
 ## 📸 Скриншоты
 
-> _Добавьте сюда красивые скриншоты интерфейса, чтобы показать преимущества программы._
+<!--
+  КАК ДОБАВИТЬ СКРИНШОТЫ:
+
+  1. Загрузите изображения в папку репозитория, например: /screenshots/main.png
+     (можно через GitHub UI: Add file → Upload files)
+
+  2. Вставьте изображение через Markdown:
+     ![Описание](screenshots/main.png)
+
+  3. Или сначала загрузите в любой GitHub Issue (просто перетащите файл в поле комментария),
+     GitHub сгенерирует прямую ссылку вида:
+     https://github.com/user-attachments/assets/...
+     Затем используйте её:
+     ![Описание](https://github.com/user-attachments/assets/...)
+
+  4. Для красивой сетки скриншотов используйте HTML таблицу:
+     <p align="center">
+       <img src="screenshots/main.png" width="48%" />
+       <img src="screenshots/settings.png" width="48%" />
+     </p>
+-->
+
+> _Скриншоты появятся здесь._
 
 ---
 

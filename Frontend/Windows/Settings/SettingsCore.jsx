@@ -98,6 +98,8 @@ export default function SettingsCore({ isOpen, onClose, currentSettings, onSaveS
       showCloseIcon={true}
       maxWidthClass="max-w-xl"
       bodyClassName="h-[60vh] overflow-y-auto"
+      titleClassName="text-[22px]"
+      headerClassName="backdrop-blur-[90px] bg-black/[0.60] border border-white/10 rounded-t-2xl"
     >
       <div className="space-y-6">
         <div className="rounded-xl border border-white/10 bg-surface-2 p-1">

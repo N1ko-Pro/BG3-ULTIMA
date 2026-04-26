@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 const { registerAllHandlers } = require('./handlers');
 const bg3Manager = require('./manager/bg3Manager');
@@ -50,9 +50,21 @@ function getDefaultGlossaryPath() {
 }
 
 function createWindow() {
+  const { width: screenW, height: screenH } = screen.getPrimaryDisplay().workAreaSize;
+
+  const DEFAULT_W = 1300;
+  const DEFAULT_H = 960;
+  const MIN_W = 900;
+  const MIN_H = 620;
+
+  const winWidth  = Math.max(MIN_W, Math.min(DEFAULT_W, screenW));
+  const winHeight = Math.max(MIN_H, Math.min(DEFAULT_H, screenH - 40));
+
   mainWindow = new BrowserWindow({
-    width: 1300,
-    height: 960,
+    width: winWidth,
+    height: winHeight,
+    minWidth: MIN_W,
+    minHeight: MIN_H,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,

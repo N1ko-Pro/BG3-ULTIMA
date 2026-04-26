@@ -94,15 +94,15 @@ export default function HomePage({ onNavigateToProjects, isOverlay = false, isFi
 
       {/* Scrollable content */}
       <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="flex flex-col items-center px-6 pt-12 pb-16 w-full max-w-[600px] mx-auto">
+        <div className="flex flex-col items-center px-6 pt-8 pb-4 w-full max-w-[600px] mx-auto">
 
           {/* Logo — transparent background */}
           <div className="app-slide-up">
-            <img src={logoSrc} alt="BG3 Ultima" className="w-48 h-48 object-contain drop-shadow-[0_0_24px_rgba(139,92,246,0.2)]" />
+            <img src={logoSrc} alt="BG3 Ultima" className="w-24 h-24 object-contain drop-shadow-[0_0_24px_rgba(139,92,246,0.2)]" />
           </div>
 
           {/* Hero text — from StartPage */}
-          <div className="flex flex-col items-center text-center mb-8 app-slide-up" style={{ animationDelay: '50ms' }}>
+          <div className="flex flex-col items-center text-center mb-5 app-slide-up" style={{ animationDelay: '50ms' }}>
             <div className="relative mb-2">
               <div className="absolute inset-0 blur-[60px] bg-white/[0.04] rounded-full scale-[2.5]" />
               <h1 className="relative text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-300 to-zinc-600">
@@ -139,7 +139,7 @@ export default function HomePage({ onNavigateToProjects, isOverlay = false, isFi
           )}
 
           {/* Grid + profile overlay — grid always holds its height, button never moves */}
-          <div ref={gridRef} className="relative w-full mb-8" data-tutorial="home-features">
+          <div ref={gridRef} className="relative w-full mb-5" data-tutorial="home-features">
             {/* Feature grid — never changes height, cards only animate visually */}
             <div
               className="w-full grid grid-cols-2 gap-3.5"
@@ -222,39 +222,38 @@ export default function HomePage({ onNavigateToProjects, isOverlay = false, isFi
               </p>
             )}
           </div>
-        </div>
-      </div>
+          <div data-tutorial="home-social" className="relative z-20 flex items-center justify-center gap-5 pt-5 pb-2">
+            <button
+              onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.github)}
+              title="GitHub"
+              className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-zinc-200 hover:border-zinc-400/30 hover:bg-zinc-400/[0.08] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)] hover:scale-110 active:scale-95 transition-all duration-300"
+            >
+              <GitHubIcon className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.discord)}
+              title="Discord"
+              className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-indigo-400 hover:border-indigo-400/30 hover:bg-indigo-400/[0.08] hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:scale-110 active:scale-95 transition-all duration-300"
+            >
+              <DiscordIcon className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.boosty)}
+              title="Boosty"
+              className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-orange-400 hover:border-orange-400/30 hover:bg-orange-400/[0.08] hover:shadow-[0_0_20px_rgba(251,146,60,0.15)] hover:scale-110 active:scale-95 transition-all duration-300"
+            >
+              <BoostyIcon className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.nexusMods)}
+              title="Nexus Mods"
+              className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-amber-400 hover:border-amber-400/30 hover:bg-amber-400/[0.08] hover:shadow-[0_0_20px_rgba(251,191,36,0.15)] hover:scale-110 active:scale-95 transition-all duration-300"
+            >
+              <NexusIcon className="w-5 h-5" />
+            </button>
+          </div>
 
-      {/* Social media icons — above footer */}
-      <div data-tutorial="home-social" className="relative z-20 flex items-center justify-center gap-5 pb-5 pt-4">
-        <button
-          onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.github)}
-          title="GitHub"
-          className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-zinc-200 hover:border-zinc-400/30 hover:bg-zinc-400/[0.08] hover:shadow-[0_0_20px_rgba(255,255,255,0.08)] hover:scale-110 active:scale-95 transition-all duration-300"
-        >
-          <GitHubIcon className="w-5 h-5" />
-        </button>
-        <button
-          onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.discord)}
-          title="Discord"
-          className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-indigo-400 hover:border-indigo-400/30 hover:bg-indigo-400/[0.08] hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:scale-110 active:scale-95 transition-all duration-300"
-        >
-          <DiscordIcon className="w-5 h-5" />
-        </button>
-        <button
-          onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.boosty)}
-          title="Boosty"
-          className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-orange-400 hover:border-orange-400/30 hover:bg-orange-400/[0.08] hover:shadow-[0_0_20px_rgba(251,146,60,0.15)] hover:scale-110 active:scale-95 transition-all duration-300"
-        >
-          <BoostyIcon className="w-5 h-5" />
-        </button>
-        <button
-          onClick={() => window.electronAPI.openExternal(MEDIA_LINKS.nexusMods)}
-          title="Nexus Mods"
-          className="group flex items-center justify-center w-11 h-11 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl text-zinc-500 hover:text-amber-400 hover:border-amber-400/30 hover:bg-amber-400/[0.08] hover:shadow-[0_0_20px_rgba(251,191,36,0.15)] hover:scale-110 active:scale-95 transition-all duration-300"
-        >
-          <NexusIcon className="w-5 h-5" />
-        </button>
+        </div>
       </div>
 
       {/* Footer — fixed at bottom */}

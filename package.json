@@ -1,7 +1,7 @@
 {
   "name": "bg3-ultima",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "BG3 ULTIMA — a desktop toolkit for Baldur's Gate 3 mod localization and translation.",
   "author": {
     "name": "ANICKON",
@@ -116,7 +116,6 @@
         "en_US",
         "ru_RU"
       ],
-      "displayLanguageSelector": true,
       "language": "1049",
       "include": "build/installer.nsh",
       "uninstallDisplayName": "BG3 ULTIMA",

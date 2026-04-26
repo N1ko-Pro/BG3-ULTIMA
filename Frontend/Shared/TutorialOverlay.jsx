@@ -204,6 +204,15 @@ export default function TutorialOverlay({ steps, onComplete, onDismiss, onBefore
     }
     tooltipStyle.left = Math.max(16, tLeft);
     tooltipStyle.width = tooltipWidth;
+  } else if (step.position === 'left') {
+    // Place tooltip to the left of the spotlight
+    tooltipStyle.top = Math.min(anchorRect.top, window.innerHeight - tooltipH - 16);
+    let tLeft = anchorRect.left - tooltipWidth - gap;
+    if (tLeft < 16) {
+      tLeft = anchorRect.left + anchorRect.width + gap;
+    }
+    tooltipStyle.left = Math.max(16, tLeft);
+    tooltipStyle.width = tooltipWidth;
   } else if (step.position === 'below') {
     // Force tooltip below the anchor element regardless of available space
     tooltipStyle.top = anchorRect.top + anchorRect.height + gap;

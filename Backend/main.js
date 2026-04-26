@@ -33,11 +33,11 @@ let mainWindow;
 
 // ─── Single instance guard ────────────────────────────────────────────────────
 // Prevents the app from hanging invisibly in Task Manager after install/update.
-// If a second instance launches while one is already running, focus the existing
-// window and quit the new instance immediately.
+// Use process.exit(0) instead of app.quit() so the process terminates
+// immediately even if app.quit() hangs before app.whenReady().
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
 if (!gotSingleInstanceLock) {
-  app.quit();
+  process.exit(0);
 } else {
   app.on('second-instance', () => {
     if (mainWindow) {
@@ -106,20 +106,25 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  // First-run: create %APPDATA%\BG3 ULTIMA with defaults (onboarding + glossary).
-  firstRunManager.initialize({
-    userDataPath: getUserDataPath(),
-    defaultGlossaryPath: getDefaultGlossaryPath(),
-  });
-
-  smartManager.initializeSettingsStore(getUserDataPath());
-  aiManager.initializeSettings(getUserDataPath());
-  dictionaryManager.initialize(getAppRootPath(), getDefaultGlossaryPath());
-  authManager.initialize(getUserDataPath(), app.getAppPath());
-  bg3Manager.initialize(getUserDataPath(), app.getAppPath());
-  projectManager.initialize(getUserDataPath());
+  // Each manager is isolated so a single failure never prevents the window
+  // from appearing (the most common cause of "app hangs with no window").
+  try { firstRunManager.initialize({ userDataPath: getUserDataPath(), defaultGlossaryPath: getDefaultGlossaryPath() }); } catch (e) { console.error('[firstRunManager]', e); }
+  try { smartManager.initializeSettingsStore(getUserDataPath()); } catch (e) { console.error('[smartManager]', e); }
+  try { aiManager.initializeSettings(getUserDataPath()); } catch (e) { console.error('[aiManager]', e); }
+  try { dictionaryManager.initialize(getAppRootPath(), getDefaultGlossaryPath()); } catch (e) { console.error('[dictionaryManager]', e); }
+  try { authManager.initialize(getUserDataPath(), app.getAppPath()); } catch (e) { console.error('[authManager]', e); }
+  try { bg3Manager.initialize(getUserDataPath(), app.getAppPath()); } catch (e) { console.error('[bg3Manager]', e); }
+  try { projectManager.initialize(getUserDataPath()); } catch (e) { console.error('[projectManager]', e); }
 
   createWindow();
+
+  // If the renderer process crashes, reload it instead of leaving a dead window.
+  app.on('render-process-gone', (_event, _webContents, details) => {
+    console.error('[renderer] process gone:', details.reason, details.exitCode);
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.reload();
+    }
+  });
 
   // Wire updater to the main window so it can broadcast events to renderer.
   updateManager.initialize(mainWindow);

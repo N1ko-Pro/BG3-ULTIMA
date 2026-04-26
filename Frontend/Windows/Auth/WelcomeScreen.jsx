@@ -282,7 +282,7 @@ export default function HomePage({ onNavigateToProjects, isOverlay = false, isFi
               title: t.tutorialWelcome?.stepFeatures?.title || 'Features & Sign In',
               description: t.tutorialWelcome?.stepFeatures?.desc || 'Explore tools and sign in via Discord.',
               tooltipAnchor: 'home-login-btn',
-              position: 'below',
+              position: 'right',
               padding: 14,
               borderRadius: 20,
             },

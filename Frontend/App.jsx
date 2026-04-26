@@ -69,6 +69,12 @@ function App() {
           setIsFirstLaunch(true);
           setIsHomeOverlayOpen(true);
         }
+        // Tutorial already done on a previous launch — lift the dotnet gate so the
+        // update modal is not blocked forever (dotnetModalCompleted is only set via
+        // handleTutorialComplete which never runs on subsequent launches).
+        if (res.data.welcomeShown) {
+          setDotnetModalCompleted(true);
+        }
       }
       setOnboardingReady(true);
     })();
@@ -133,7 +139,7 @@ function App() {
     !updateModalDismissed &&
     !dotnetInstallModalOpen &&
     dotnetModalCompleted &&
-    (updater.state.status === 'available' || updater.state.status === 'downloaded');
+    (updater.state.status === 'available' || updater.state.status === 'downloaded' || updater.state.status === 'installing');
 
   React.useEffect(() => {
     if (canShowUpdate) setUpdateModalOpen(true);
@@ -475,8 +481,8 @@ function App() {
       />
 
       {/* Silent-install progress overlay — self-controlled via updater state.
-          Shows whenever status === 'installing' and cannot be dismissed. */}
-      <InstallingUpdateModal />
+          Suppressed when UpdateAvailableModal is already showing the progress inline. */}
+      <InstallingUpdateModal suppressWhenModalOpen={updateModalOpen} />
 
       {/* .NET Runtime Missing Modal */}
       <DotNetMissingModal

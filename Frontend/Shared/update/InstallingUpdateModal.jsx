@@ -33,13 +33,13 @@ const ANIMATION_DURATION_MS = 2200;   // 0 → 100 % animation length
 const HOLD_AT_100_MS        = 300;    // brief pause so user sees 100 %
 const FINALIZE_RETRY_MS     = 6000;   // safety retry if NSIS hasn't killed us
 
-export default function InstallingUpdateModal() {
+export default function InstallingUpdateModal({ suppressWhenModalOpen = false }) {
   const t = useLocale();
   const { state, currentVersion, finalizeInstall } = useUpdater();
   const [percent, setPercent] = useState(0);
   const startedRef = useRef(false);
 
-  const isOpen = state.status === 'installing';
+  const isOpen = state.status === 'installing' && !suppressWhenModalOpen;
 
   useEffect(() => {
     if (!isOpen || startedRef.current) return undefined;

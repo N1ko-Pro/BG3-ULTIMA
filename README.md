@@ -5,7 +5,7 @@
 **Modern desktop toolkit for Baldur's Gate 3 mod localization and translation**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/N1ko-Pro/BG3-ULTIMA/releases)
-[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](https://github.com/N1ko-Pro/BG3-ULTIMA/blob/main/LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/N1ko-Pro/BG3-ULTIMA)
 [![Electron](https://img.shields.io/badge/Electron-41.0-blue.svg)](https://www.electronjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-cyan.svg)](https://react.dev/)
@@ -156,7 +156,7 @@ npm run dist
 
 ## 📬 Обратная связь
 
-Если вы нашли баг или хотите предложить улучшение — создайте [Issue](https://github.com/N1ko-Pro/BG3-ULTIMA/issues).
+Если вы нашли баг или хотите предложить улучшение — обращайтесь в [Discrod](https://discord.gg/nxFghu8pWp) или создайте [Issue](https://github.com/N1ko-Pro/BG3-ULTIMA/issues).
 
 ---
 

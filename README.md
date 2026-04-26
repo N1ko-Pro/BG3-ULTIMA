@@ -110,7 +110,7 @@ npm run dist
       <td>Иконки</td>
     </tr>
     <tr>
-      <td rowspan="3" align="center"><strong>Backend</strong></td>
+      <td rowspan="4" align="center"><strong>Backend</strong></td>
       <td>Electron 41.1</td>
       <td>Десктопное приложение</td>
     </tr>
@@ -121,6 +121,10 @@ npm run dist
     <tr>
       <td>Electron Builder 26.8</td>
       <td>Сборка установщиков</td>
+    </tr>
+    <tr>
+      <td>GitHub Releases</td>
+      <td>Автообновления</td>
     </tr>
     <tr>
       <td rowspan="3" align="center"><strong>Интеграции</strong></td>

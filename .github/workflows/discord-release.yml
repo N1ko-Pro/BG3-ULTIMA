@@ -26,6 +26,7 @@ jobs:
             --arg tag "$RELEASE_TAG" \
             --arg ts "$RELEASE_DATE" \
             '{
+              content: "@everyone",
               thread_name: $thread,
               embeds: [{
                 title: $title,

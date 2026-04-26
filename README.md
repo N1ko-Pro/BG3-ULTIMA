@@ -83,17 +83,56 @@ npm run dist
 
 ## 🛠️ Технологии
 
-| Category | Technology | Description |
-|----------|------------|-------------|
-| **Frontend** | React 19.2 | UI библиотека |
-| | Vite 8.0 | Сборщик и dev-сервер |
-| | TailwindCSS 3.4 | Стилизация |
-| | Lucide React | Иконки |
-| **Backend** | Electron 41.1 | Десктопное приложение |
-| | Node.js | Серверная часть |
-| | Electron Builder 26.8 | Сборка установщиков |
-| **Интеграции** | Google Translate API | Автоматический перевод |
-| | Ollama | Локальные LLM модели |
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Technology</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4" align="center"><strong>Frontend</strong></td>
+      <td>React 19.2</td>
+      <td>UI библиотека</td>
+    </tr>
+    <tr>
+      <td>Vite 8.0</td>
+      <td>Сборщик и dev-сервер</td>
+    </tr>
+    <tr>
+      <td>TailwindCSS 3.4</td>
+      <td>Стилизация</td>
+    </tr>
+    <tr>
+      <td>Lucide React</td>
+      <td>Иконки</td>
+    </tr>
+    <tr>
+      <td rowspan="3" align="center"><strong>Backend</strong></td>
+      <td>Electron 41.1</td>
+      <td>Десктопное приложение</td>
+    </tr>
+    <tr>
+      <td>Node.js</td>
+      <td>Серверная часть</td>
+    </tr>
+    <tr>
+      <td>Electron Builder 26.8</td>
+      <td>Сборка установщиков</td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center"><strong>Интеграции</strong></td>
+      <td>Google Translate API</td>
+      <td>Автоматический перевод</td>
+    </tr>
+    <tr>
+      <td>Ollama</td>
+      <td>Локальные LLM модели</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 

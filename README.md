@@ -93,7 +93,7 @@ npm run dist
   </thead>
   <tbody>
     <tr>
-      <td rowspan="4" align="center" style="vertical-align: middle; background-color: #f6f8fa;"><strong>Frontend</strong></td>
+      <td rowspan="4" align="center"><strong>Frontend</strong></td>
       <td>React 19.2</td>
       <td>UI библиотека</td>
     </tr>
@@ -110,7 +110,7 @@ npm run dist
       <td>Иконки</td>
     </tr>
     <tr>
-      <td rowspan="3" align="center" style="vertical-align: middle; background-color: #f6f8fa;"><strong>Backend</strong></td>
+      <td rowspan="3" align="center"><strong>Backend</strong></td>
       <td>Electron 41.1</td>
       <td>Десктопное приложение</td>
     </tr>
@@ -123,13 +123,17 @@ npm run dist
       <td>Сборка установщиков</td>
     </tr>
     <tr>
-      <td rowspan="2" align="center" style="vertical-align: middle; background-color: #f6f8fa;"><strong>Интеграции</strong></td>
+      <td rowspan="3" align="center"><strong>Интеграции</strong></td>
       <td>Google Translate API</td>
       <td>Автоматический перевод</td>
     </tr>
     <tr>
       <td>Ollama</td>
       <td>Локальные LLM модели</td>
+    </tr>
+    <tr>
+      <td>Discord</td>
+      <td>Авторизация и сообщество</td>
     </tr>
   </tbody>
 </table>

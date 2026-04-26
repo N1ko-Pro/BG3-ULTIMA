@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "forceConsistentCasingInFileNames": false
+  },
+  "include": ["Frontend"],
+  "exclude": ["node_modules", "dist", "dist-electron"]
+}

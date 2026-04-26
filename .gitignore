@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+dist-electron
+release
+build/release-notes.md
+*.local
+
+# Local secrets (GH_TOKEN, etc.)
+.env
+.env.*
+!.env.example
+
+# Auth config (contains secrets)
+Backend/config/auth.config.json
+
+# Backend / C#
+Backend/bin/
+Backend/DllParser/bin/
+Backend/DllParser/obj/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+workspace/
+Backend/config/translatorProxy.json
+
+# Build output / release artifacts
+release/
+build/
+.windsurf/
+scripts/

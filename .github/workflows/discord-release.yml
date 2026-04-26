@@ -12,10 +12,8 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
-          RELEASE_NAME: ${{ github.event.release.name }}
           RELEASE_BODY: ${{ github.event.release.body }}
           RELEASE_URL: ${{ github.event.release.html_url }}
-          RELEASE_AUTHOR: ${{ github.event.release.author.login }}
           RELEASE_DATE: ${{ github.event.release.published_at }}
         run: |
           PAYLOAD=$(jq -n \
@@ -26,7 +24,6 @@ jobs:
             --arg tag "$RELEASE_TAG" \
             --arg ts "$RELEASE_DATE" \
             '{
-              content: "@everyone",
               thread_name: $thread,
               embeds: [{
                 title: $title,
@@ -44,3 +41,20 @@ jobs:
           curl -s -X POST "$DISCORD_WEBHOOK" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD"
+
+      - name: Send announcement
+        env:
+          DISCORD_ANNOUNCE_WEBHOOK: ${{ secrets.DISCORD_ANNOUNCE_WEBHOOK_URL }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASES_CHANNEL: ${{ secrets.DISCORD_RELEASES_CHANNEL_URL }}
+        run: |
+          PAYLOAD=$(jq -n \
+            --arg tag "$RELEASE_TAG" \
+            --arg channel "$RELEASES_CHANNEL" \
+            '{
+              content: ("@everyone\n\n🚀 **Вышла новая версия BG3 ULTIMA " + $tag + "!**\nСкачать можно в канале релизов: " + $channel)
+            }')
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X POST "$DISCORD_ANNOUNCE_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD")
+          echo "Response: $RESPONSE"

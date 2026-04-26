@@ -97,13 +97,13 @@ export default function HomePage({ onNavigateToProjects, isOverlay = false, isFi
         <div className="flex flex-col items-center px-6 pt-12 pb-16 w-full max-w-[600px] mx-auto">
 
           {/* Logo — transparent background */}
-          <div className="mb-5 app-slide-up">
-            <img src={logoSrc} alt="BG3 Ultima" className="w-16 h-16 object-contain drop-shadow-[0_0_24px_rgba(139,92,246,0.2)]" />
+          <div className="app-slide-up">
+            <img src={logoSrc} alt="BG3 Ultima" className="w-48 h-48 object-contain drop-shadow-[0_0_24px_rgba(139,92,246,0.2)]" />
           </div>
 
           {/* Hero text — from StartPage */}
           <div className="flex flex-col items-center text-center mb-8 app-slide-up" style={{ animationDelay: '50ms' }}>
-            <div className="relative mb-3">
+            <div className="relative mb-2">
               <div className="absolute inset-0 blur-[60px] bg-white/[0.04] rounded-full scale-[2.5]" />
               <h1 className="relative text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-300 to-zinc-600">
                 BG3 ULTIMA

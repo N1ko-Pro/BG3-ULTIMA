@@ -51,8 +51,8 @@ export default function SideBar({ disabled, modData, translations, setTranslatio
         <div className="absolute inset-0 bg-gradient-to-r from-surface-2/60 to-surface-2/40" />
         <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
-        <div className="relative flex items-center gap-3.5 flex-1 min-w-0">
-          <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0">
+        <div className="relative flex items-center gap-1 flex-1 min-w-0">
+          <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
             <img src={logoSrc} alt="BG3 Ultima" className="w-full h-full object-contain" />
           </div>
           <div className={`flex flex-col justify-center whitespace-nowrap transition-opacity duration-300 ${isCompact ? 'opacity-0' : 'opacity-100'}`}>

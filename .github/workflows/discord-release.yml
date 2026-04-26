@@ -20,12 +20,13 @@ jobs:
         run: |
           PAYLOAD=$(jq -n \
             --arg title "🚀 Новый релиз BG3 ULTIMA — $RELEASE_TAG" \
+            --arg thread "🚀 BG3 ULTIMA $RELEASE_TAG" \
             --arg url "$RELEASE_URL" \
             --arg desc "$RELEASE_BODY" \
             --arg tag "$RELEASE_TAG" \
-            --arg author "$RELEASE_AUTHOR" \
             --arg ts "$RELEASE_DATE" \
             '{
+              thread_name: $thread,
               embeds: [{
                 title: $title,
                 url: $url,
@@ -33,7 +34,7 @@ jobs:
                 color: 5793266,
                 fields: [
                   { name: "📦 Версия", value: $tag, inline: true },
-                  { name: "👤 Автор",  value: $author, inline: true }
+                  { name: "👤 Автор",  value: "ANICKON", inline: true }
                 ],
                 footer: { text: "BG3 ULTIMA • GitHub Releases" },
                 timestamp: $ts

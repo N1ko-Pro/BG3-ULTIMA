@@ -69,29 +69,34 @@ npm run dist
 
 ## 📸 Скриншоты
 
-<!--
-  КАК ДОБАВИТЬ СКРИНШОТЫ:
-
-  1. Загрузите изображения в папку репозитория, например: /screenshots/main.png
-     (можно через GitHub UI: Add file → Upload files)
-
-  2. Вставьте изображение через Markdown:
-     ![Описание](screenshots/main.png)
-
-  3. Или сначала загрузите в любой GitHub Issue (просто перетащите файл в поле комментария),
-     GitHub сгенерирует прямую ссылку вида:
-     https://github.com/user-attachments/assets/...
-     Затем используйте её:
-     ![Описание](https://github.com/user-attachments/assets/...)
-
-  4. Для красивой сетки скриншотов используйте HTML таблицу:
-     <p align="center">
-       <img src="screenshots/main.png" width="48%" />
-       <img src="screenshots/settings.png" width="48%" />
-     </p>
--->
-
-> _Скриншоты появятся здесь._
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="public/1_Welcome.png" alt="Главная страница" width="100%" />
+      <br/><sub><b>🏠 Главная страница</b></sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="public/2_WorkSpace.png" alt="Рабочее пространство" width="100%" />
+      <br/><sub><b>📝 Рабочее пространство</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="public/3_Project%20Table.png" alt="Таблица переводов" width="100%" />
+      <br/><sub><b>📊 Таблица переводов</b></sub>
+    </td>
+    <td align="center">
+      <img src="public/4_Tools.png" alt="Инструменты перевода" width="100%" />
+      <br/><sub><b>🛠️ Инструменты перевода</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="public/5_Settings.png" alt="Настройки приложения" width="50%" />
+      <br/><sub><b>⚙️ Настройки приложения</b></sub>
+    </td>
+  </tr>
+</table>
 
 ---
 

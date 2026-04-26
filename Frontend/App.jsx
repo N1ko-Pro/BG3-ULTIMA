@@ -139,7 +139,7 @@ function App() {
     !updateModalDismissed &&
     !dotnetInstallModalOpen &&
     dotnetModalCompleted &&
-    (updater.state.status === 'available' || updater.state.status === 'downloaded' || updater.state.status === 'installing');
+    (updater.state.status === 'available' || updater.state.status === 'download-progress' || updater.state.status === 'downloaded' || updater.state.status === 'installing');
 
   React.useEffect(() => {
     if (canShowUpdate) setUpdateModalOpen(true);

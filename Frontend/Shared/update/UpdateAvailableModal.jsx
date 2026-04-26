@@ -27,11 +27,22 @@ export default function UpdateAvailableModal({ isOpen, onDismiss }) {
   const [animPercent, setAnimPercent] = useState(0);
   const startedRef = useRef(false);
 
-  const notes       = useMemo(() => stripHtml(state.info?.releaseNotes || ''), [state.info?.releaseNotes]);
-  const isReady     = state.status === 'downloaded';
+  const [downloadPending, setDownloadPending] = useState(false);
+
+  const notes         = useMemo(() => stripHtml(state.info?.releaseNotes || ''), [state.info?.releaseNotes]);
+  const isReady       = state.status === 'downloaded';
   const isDownloading = state.status === 'download-progress';
   const isInstalling  = state.status === 'installing';
-  const percent     = state.progress?.percent ?? 0;
+  const percent       = state.progress?.percent ?? 0;
+  // showProgress: true while waiting for IPC response (pending) OR while actively downloading
+  // Derived — no effect needed: once isReady the download button is replaced by install button anyway
+  const showProgress  = isDownloading || (downloadPending && !isReady && !isInstalling);
+
+  const handleDownload = () => {
+    if (showProgress) return;
+    setDownloadPending(true);
+    download();
+  };
 
   useEffect(() => {
     if (!isInstalling || startedRef.current) return undefined;
@@ -172,15 +183,23 @@ export default function UpdateAvailableModal({ isOpen, onDismiss }) {
                   </div>
                 )}
 
-                {isDownloading && (
+                {showProgress && (
                   <div className="space-y-1.5">
-                    <div className="h-2 rounded-full bg-white/[0.05] overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-400 transition-[width] duration-200 ease-out"
-                        style={{ width: `${percent}%` }}
-                      />
+                    <div className="h-2 rounded-full bg-white/[0.05] overflow-hidden relative">
+                      {downloadPending && !isDownloading ? (
+                        <div className="absolute inset-y-0 left-0 w-1/3 rounded-full bg-gradient-to-r from-indigo-400/60 via-violet-400 to-indigo-400/60 animate-[bg3_pendingSlide_1.4s_ease-in-out_infinite]" />
+                      ) : (
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-400 transition-[width] duration-300 ease-out"
+                          style={{ width: `${percent}%` }}
+                        />
+                      )}
                     </div>
-                    <p className="text-[11px] text-zinc-500 text-right">{percent}%</p>
+                    <div className="flex items-center justify-between text-[11px] text-zinc-500">
+                      <span>{downloadPending && !isDownloading ? (t.updates.modal?.starting ?? 'Starting…') : t.updates.downloading}</span>
+                      {isDownloading && <span className="tabular-nums">{Math.round(percent)}%</span>}
+                    </div>
+                    <style>{`@keyframes bg3_pendingSlide { 0%{left:-33%} 100%{left:100%} }`}</style>
                   </div>
                 )}
               </div>
@@ -202,12 +221,14 @@ export default function UpdateAvailableModal({ isOpen, onDismiss }) {
                   </button>
                 ) : (
                   <button
-                    onClick={() => { if (!isDownloading) download(); }}
-                    disabled={isDownloading}
+                    onClick={handleDownload}
+                    disabled={showProgress}
                     className="flex-1 rounded-xl border border-indigo-400/30 bg-indigo-500/[0.12] px-4 py-2.5 text-[13px] font-semibold text-indigo-200 hover:bg-indigo-500/[0.22] hover:border-indigo-400/50 hover:shadow-[0_0_16px_rgba(139,92,246,0.25)] transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    <Download className="w-4 h-4" />
-                    {isDownloading ? t.updates.downloading : t.updates.download}
+                    {downloadPending && !isDownloading
+                      ? <div className="w-4 h-4 rounded-full border-2 border-indigo-300/40 border-t-indigo-200 animate-spin" />
+                      : <Download className="w-4 h-4" />}
+                    {showProgress ? (downloadPending && !isDownloading ? (t.updates.modal?.starting ?? 'Starting…') : t.updates.downloading) : t.updates.download}
                   </button>
                 )}
               </div>

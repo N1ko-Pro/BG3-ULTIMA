@@ -205,10 +205,11 @@ class UpdateManager extends EventEmitter {
   // "wait 300 ms + 1000 ms then kill the old app" logic kicks in.
   finalizeInstall() {
     try {
-      // autoUpdater.install(isSilent, isForceRunAfter)
-      //   → spawns BG3-ULTIMA-Setup.exe with ["--updated", "/S",
-      //     "--force-run"]. Does NOT schedule app.quit() itself.
-      const ok = autoUpdater.install(true, true);
+      // autoUpdater.install(isSilent=false, isForceRunAfter=true)
+      //   → spawns BG3-ULTIMA-Setup.exe with ["--updated", "--force-run"].
+      //   isSilent=false shows the NSIS progress window so the user
+      //   can see installation progress after Electron quits.
+      const ok = autoUpdater.install(false, true);
       if (!ok) {
         // Fall back to the legacy all-in-one path so we still quit.
         autoUpdater.quitAndInstall(true, true);

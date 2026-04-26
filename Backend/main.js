@@ -31,6 +31,23 @@ process.emitWarning = function (warning, ...args) {
 
 let mainWindow;
 
+// ─── Single instance guard ────────────────────────────────────────────────────
+// Prevents the app from hanging invisibly in Task Manager after install/update.
+// If a second instance launches while one is already running, focus the existing
+// window and quit the new instance immediately.
+const gotSingleInstanceLock = app.requestSingleInstanceLock();
+if (!gotSingleInstanceLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+  });
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
 function getUserDataPath() {
   return app.getPath('userData');
 }

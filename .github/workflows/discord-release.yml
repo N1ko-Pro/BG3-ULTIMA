@@ -2,10 +2,14 @@ name: Discord Release Notification
 
 on:
   release:
-    types: [published]
+    types: [published, edited]
 
 jobs:
   notify:
+    # Skip when release body is empty (race: electron-builder publishes first,
+    # then release.js patches title+body via GitHub API which fires 'edited').
+    # We only notify once the body is actually set.
+    if: github.event.release.body != ''
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord notification
